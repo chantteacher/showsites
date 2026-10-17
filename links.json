@@ -4,11 +4,5 @@
     "title": "예시 · Desmos 그래프 계산기",
     "desc": "함수 그래프를 바로 그려 볼 수 있는 계산기",
     "url": "https://www.desmos.com/calculator"
-  },
-  {
-    "id": "ex3",
-    "title": "예시 · GitHub",
-    "desc": "코드 저장소",
-    "url": "https://github.com"
   }
 ]
