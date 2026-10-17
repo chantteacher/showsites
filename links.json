@@ -1,8 +1,8 @@
 [
   {
     "id": "ex2",
-    "title": "예시 · Desmos 그래프 계산기",
-    "desc": "함수 그래프를 바로 그려 볼 수 있는 계산기",
-    "url": "https://www.desmos.com/calculator"
+    "title": "기하수업 룰렛",
+    "desc": "기하 수업 때 사용 가능한 무료 룰렛!!",
+    "url": "https://chantteacher.github.io/math-geometry-roulette1/"
   }
 ]
