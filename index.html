@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>mathchan 링크</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style id="page-style">
+/* Layout: one narrow column, a quiet header, links as a ruled index list; admin tools appear inline only when unlocked */
+:root{
+  --bg:#f3f5f8; --surface:#ffffff; --fg:#17202e; --muted:#5d6878; --line:#dde2ea;
+  --accent:#2b4fd8; --accent-soft:#e6ebfc; --danger:#c23a2b; --ok:#1f7a4d;
+  --display:"Gowun Batang",Georgia,serif;
+  --body:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f141c; --surface:#161d28; --fg:#e7ebf2; --muted:#94a0b2; --line:#263040;
+  --accent:#8aa4ff; --accent-soft:#1d2744; --danger:#ff7b6b; --ok:#5fcf95; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f141c; --surface:#161d28; --fg:#e7ebf2; --muted:#94a0b2; --line:#263040;
+  --accent:#8aa4ff; --accent-soft:#1d2744; --danger:#ff7b6b; --ok:#5fcf95; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0}
+[hidden]{display:none!important}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:640px;margin:0 auto;padding-block:48px 64px;display:flex;flex-direction:column;gap:28px}
+header{display:flex;flex-direction:column;gap:6px}
+h1{font-family:var(--display);font-size:2.1rem;line-height:1.2;margin:0;text-wrap:balance;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0;font-size:.92rem}
+.count{font-family:var(--mono);font-size:.78rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+
+.list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.item{border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:stretch}
+.link{flex:1;min-width:0;display:grid;grid-template-columns:2.2rem 1fr auto;gap:4px 12px;align-items:baseline;
+  padding:16px 4px;text-decoration:none;color:inherit;border-radius:6px;transition:background .15s}
+.link:hover{background:var(--accent-soft)}
+.link:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.idx{font-family:var(--mono);font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums;grid-row:span 2}
+.t{font-weight:600;font-size:1.05rem;min-width:0;overflow-wrap:anywhere}
+.link:hover .t{color:var(--accent)}
+.arrow{color:var(--muted);font-family:var(--mono);grid-row:span 2;transition:transform .15s}
+.link:hover .arrow{color:var(--accent);transform:translate(2px,-2px)}
+.d{color:var(--muted);font-size:.9rem;min-width:0;overflow-wrap:anywhere}
+.host{font-family:var(--mono);font-size:.75rem;color:var(--muted);opacity:.8}
+
+.tools{display:flex;align-items:center;gap:4px;flex-shrink:0}
+.ibtn{background:none;border:1px solid transparent;color:var(--muted);font:inherit;font-size:.82rem;
+  padding:6px 8px;border-radius:6px;cursor:pointer;min-width:34px}
+.ibtn:hover{border-color:var(--line);color:var(--fg)}
+.ibtn.del:hover{color:var(--danger);border-color:var(--danger)}
+.ibtn:disabled{opacity:.3;cursor:default}
+.ibtn:focus-visible,.btn:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+
+.empty{padding:32px 4px;color:var(--muted);border-bottom:1px solid var(--line)}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.panel h2{margin:0;font-size:.8rem;font-family:var(--mono);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font-size:.82rem;color:var(--muted)}
+input,textarea{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:9px 11px;width:100%}
+textarea{resize:vertical;min-height:60px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{font:inherit;font-weight:500;font-size:.9rem;border-radius:6px;padding:9px 16px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.btn.danger{background:var(--danger);border-color:var(--danger);color:var(--surface)}
+.btn:disabled{opacity:.5;cursor:default}
+.msg{font-size:.85rem;margin:0}
+.msg.err{color:var(--danger)} .msg.ok{color:var(--ok)}
+
+.savebar{position:sticky;bottom:0;margin-top:-12px;background:var(--surface);border:1px solid var(--accent);border-radius:10px;
+  padding:12px 14px;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  margin-bottom:env(safe-area-inset-bottom,0px)}
+.savebar span{font-size:.9rem}
+
+footer{display:flex;justify-content:flex-end}
+.admin-toggle{background:none;border:none;color:var(--muted);font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;cursor:pointer;padding:6px;text-transform:uppercase}
+.admin-toggle:hover{color:var(--fg)}
+.edit-form{flex:1;min-width:0;padding:14px 0;display:flex;flex-direction:column;gap:10px}
+@media (max-width:480px){h1{font-size:1.7rem}.wrap{padding-block:32px 48px}.link{grid-template-columns:1.8rem 1fr auto}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<style>
+.hint{font-size:.82rem;color:var(--muted);margin:0}
+.hint a{color:var(--accent)}
+.status{font-size:.82rem;color:var(--muted);font-family:var(--mono)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:480px){.grid2{grid-template-columns:1fr}}
+details summary{cursor:pointer;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="count" id="count"></span>
+    <h1>mathchan 링크</h1>
+    <p class="sub">자주 찾는 곳을 한 페이지에 모아 두었어요.</p>
+  </header>
+  <main id="app"><p class="sub">불러오는 중…</p></main>
+  <footer><button class="admin-toggle" id="adminToggle" type="button">관리자</button></footer>
+</div>
+
+<script>
+(function(){
+  var PASSWORD = "mathchan";
+  var DATA_FILE = "links.json";
+  var DEFAULT_LINKS = [
+    {"id":"ex1","title":"예시 · 위키백과","desc":"예시 링크예요. 관리자 모드에서 지우고 내 링크를 추가하세요.","url":"https://ko.wikipedia.org"}
+  ];
+
+  var app = document.getElementById("app");
+  var saved = [], links = [];
+  var admin = false, dirty = false, editingId = null, confirmId = null, saving = false;
+  var adminMsg = "", saveMsg = "", saveErr = false, showSettings = false;
+  var cfg = loadCfg();
+
+  try { if (sessionStorage.getItem("mc-admin") === "1") admin = true; } catch(e) {}
+
+  // ---------- GitHub settings ----------
+  function guessRepo(){
+    var h = location.hostname, m = h.match(/^([^.]+)\.github\.io$/i);
+    if (!m) return { owner: "", repo: "" };
+    var seg = location.pathname.split("/").filter(Boolean)[0];
+    if (seg && /\.html?$/i.test(seg)) seg = null;
+    return { owner: m[1], repo: seg || (m[1] + ".github.io") };
+  }
+  function loadCfg(){
+    var g = guessRepo(), c = {};
+    try { c = JSON.parse(localStorage.getItem("mc-gh") || "{}"); } catch(e) {}
+    var dir = location.pathname.replace(/[^/]*$/, "");
+    var seg = location.pathname.split("/").filter(Boolean)[0];
+    var sub = (g.repo && seg === g.repo) ? dir.slice(("/" + seg + "/").length) : dir.replace(/^\//, "");
+    return {
+      owner: c.owner || g.owner, repo: c.repo || g.repo,
+      branch: c.branch || "main", path: c.path || (sub + DATA_FILE),
+      token: c.token || ""
+    };
+  }
+  function saveCfg(){ try { localStorage.setItem("mc-gh", JSON.stringify(cfg)); } catch(e) {} }
+  function ready(){ return cfg.owner && cfg.repo && cfg.token; }
+  function apiUrl(){
+    return "https://api.github.com/repos/" + encodeURIComponent(cfg.owner) + "/" + encodeURIComponent(cfg.repo) +
+      "/contents/" + cfg.path.split("/").map(encodeURIComponent).join("/");
+  }
+  function ghHeaders(extra){
+    return Object.assign({ "Authorization": "Bearer " + cfg.token, "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" }, extra || {});
+  }
+  function b64(str){
+    var bytes = new TextEncoder().encode(str), bin = "";
+    for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    return btoa(bin);
+  }
+
+  // ---------- load ----------
+  async function load(){
+    var list = null;
+    // 관리자 토큰이 있으면 저장소에서 바로 읽어 최신 상태를 가져와요 (Pages 반영 지연 없음)
+    if (ready()) {
+      try {
+        var r = await fetch(apiUrl() + "?ref=" + encodeURIComponent(cfg.branch) + "&t=" + Date.now(),
+          { headers: ghHeaders({ "Accept": "application/vnd.github.raw+json" }), cache: "no-store" });
+        if (r.ok) list = await r.json();
+      } catch(e) {}
+    }
+    if (!list) {
+      try {
+        var r2 = await fetch(DATA_FILE + "?t=" + Date.now(), { cache: "no-store" });
+        if (r2.ok) list = await r2.json();
+      } catch(e) {}
+    }
+    if (!Array.isArray(list)) list = DEFAULT_LINKS;
+    saved = list.filter(function(l){ return l && l.url; }).map(function(l){
+      return { id: l.id || uid(), title: String(l.title || l.url), desc: String(l.desc || ""), url: String(l.url) };
+    });
+    links = clone(saved);
+    render();
+  }
+
+  // ---------- helpers ----------
+  function clone(a){ return a.map(function(l){ return Object.assign({}, l); }); }
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+  function host(u){ try { return new URL(u).host.replace(/^www\./, ""); } catch(e) { return u; } }
+  function normUrl(u){ u = (u || "").trim(); if (!u) return ""; if (!/^[a-z][a-z0-9+.-]*:/i.test(u)) u = "https://" + u; return u; }
+  function safeHref(u){ return /^(https?:|mailto:|tel:)/i.test(u) ? u : "#"; }
+  function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+  function pad(n){ return (n < 10 ? "0" : "") + n; }
+
+  // ---------- render ----------
+  function settingsPanel(){
+    return '<form class="panel" id="ghForm"><h2>GitHub 연결</h2>' +
+      '<p class="hint">저장하기를 누르면 저장소의 <code>' + esc(cfg.path) + '</code> 파일이 바로 수정돼요. 토큰은 이 브라우저에만 보관돼요.</p>' +
+      '<div class="grid2">' +
+        '<div class="field"><label for="ghOwner">계정 이름</label><input id="ghOwner" value="' + esc(cfg.owner) + '" placeholder="내 GitHub 아이디"></div>' +
+        '<div class="field"><label for="ghRepo">저장소 이름</label><input id="ghRepo" value="' + esc(cfg.repo) + '" placeholder="links"></div>' +
+        '<div class="field"><label for="ghBranch">브랜치</label><input id="ghBranch" value="' + esc(cfg.branch) + '"></div>' +
+        '<div class="field"><label for="ghPath">파일 경로</label><input id="ghPath" value="' + esc(cfg.path) + '"></div>' +
+      '</div>' +
+      '<div class="field"><label for="ghToken">개인 액세스 토큰</label><input id="ghToken" type="password" autocomplete="off" value="' + esc(cfg.token) + '" placeholder="github_pat_…"></div>' +
+      '<p class="hint"><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">토큰 만들기</a> → 이 저장소만 선택 → Repository permissions에서 <b>Contents: Read and write</b></p>' +
+      '<div class="row"><button class="btn primary" type="submit">연결 저장</button>' +
+      (cfg.token ? '<button class="btn" type="button" data-act="forget">토큰 지우기</button>' : '') + '</div></form>';
+  }
+
+  function render(){
+    document.getElementById("count").textContent = links.length + " links";
+    document.getElementById("adminToggle").textContent = admin === true ? "관리자 모드 끄기" : "관리자";
+    var h = "";
+
+    if (admin === "login") {
+      h += '<div class="panel"><h2>관리자 로그인</h2>' +
+        '<form id="loginForm" class="row"><input id="pw" type="password" autocomplete="current-password" placeholder="비밀번호" style="flex:1;min-width:160px">' +
+        '<button class="btn primary" type="submit">들어가기</button><button class="btn" type="button" id="loginCancel">취소</button></form>' +
+        (adminMsg ? '<p class="msg err">' + esc(adminMsg) + '</p>' : '') + '</div>';
+    }
+
+    if (admin === true) {
+      if (!ready() || showSettings) h += settingsPanel();
+      else h += '<div class="row" style="justify-content:space-between"><span class="status">연결됨 · ' + esc(cfg.owner + "/" + cfg.repo) + '</span>' +
+        '<button class="ibtn" type="button" data-act="settings">연결 설정</button></div>';
+      h += '<form class="panel" id="addForm"><h2>새 링크 추가</h2>' +
+        '<div class="field"><label for="addTitle">제목</label><input id="addTitle" required maxlength="80" placeholder="예: 수학 노트"></div>' +
+        '<div class="field"><label for="addUrl">주소</label><input id="addUrl" required inputmode="url" placeholder="example.com"></div>' +
+        '<div class="field"><label for="addDesc">간단한 설명</label><textarea id="addDesc" maxlength="200" placeholder="어떤 링크인지 한 줄로"></textarea></div>' +
+        '<div class="row"><button class="btn primary" type="submit">추가</button></div></form>';
+    }
+
+    h += '<ul class="list">';
+    if (!links.length) h += '<li class="empty">아직 링크가 없어요. 아래 관리자 버튼으로 첫 링크를 추가하세요.</li>';
+    links.forEach(function(l, i){
+      if (admin === true && editingId === l.id) {
+        h += '<li class="item"><form class="edit-form" data-edit="' + esc(l.id) + '">' +
+          '<div class="field"><label for="eT">제목</label><input id="eT" required maxlength="80" value="' + esc(l.title) + '"></div>' +
+          '<div class="field"><label for="eU">주소</label><input id="eU" required value="' + esc(l.url) + '"></div>' +
+          '<div class="field"><label for="eD">설명</label><textarea id="eD" maxlength="200">' + esc(l.desc) + '</textarea></div>' +
+          '<div class="row"><button class="btn primary" type="submit">적용</button><button class="btn" type="button" data-act="cancel">취소</button></div></form></li>';
+        return;
+      }
+      h += '<li class="item"><a class="link" href="' + esc(safeHref(l.url)) + '" target="_blank" rel="noopener noreferrer">' +
+        '<span class="idx">' + pad(i + 1) + '</span><span class="t">' + esc(l.title) + '</span><span class="arrow" aria-hidden="true">↗</span>' +
+        '<span class="d">' + (l.desc ? esc(l.desc) + ' ' : '') + '<span class="host">' + esc(host(l.url)) + '</span></span></a>';
+      if (admin === true) {
+        if (confirmId === l.id) {
+          h += '<div class="tools"><button class="btn danger" type="button" data-act="del-yes" data-id="' + esc(l.id) + '">삭제</button>' +
+               '<button class="ibtn" type="button" data-act="del-no">취소</button></div>';
+        } else {
+          h += '<div class="tools">' +
+            '<button class="ibtn" type="button" title="위로" aria-label="위로" data-act="up" data-id="' + esc(l.id) + '"' + (i === 0 ? ' disabled' : '') + '>↑</button>' +
+            '<button class="ibtn" type="button" title="아래로" aria-label="아래로" data-act="down" data-id="' + esc(l.id) + '"' + (i === links.length - 1 ? ' disabled' : '') + '>↓</button>' +
+            '<button class="ibtn" type="button" data-act="edit" data-id="' + esc(l.id) + '">수정</button>' +
+            '<button class="ibtn del" type="button" data-act="del" data-id="' + esc(l.id) + '">삭제</button></div>';
+        }
+      }
+      h += '</li>';
+    });
+    h += '</ul>';
+
+    if (admin === true && (dirty || saveMsg)) {
+      var m = saveMsg ? '<p class="msg ' + (saveErr ? 'err' : 'ok') + '" style="flex-basis:100%">' + esc(saveMsg) + '</p>' : '';
+      h += '<div class="savebar" role="status">' +
+        (dirty ? '<span>저장하지 않은 변경사항이 있어요.</span><div class="row"><button class="btn" type="button" data-act="revert">되돌리기</button>' +
+          '<button class="btn primary" type="button" data-act="save"' + (saving ? ' disabled' : '') + '>' + (saving ? '저장 중…' : '저장하기') + '</button></div>' : '') +
+        m + '</div>';
+    }
+    app.innerHTML = h;
+    var pw = document.getElementById("pw"); if (pw) pw.focus();
+  }
+
+  // ---------- actions ----------
+  function setAdmin(v){
+    admin = v;
+    try { if (v === true) sessionStorage.setItem("mc-admin", "1"); else sessionStorage.removeItem("mc-admin"); } catch(e) {}
+  }
+  function change(){ dirty = true; saveMsg = ""; render(); }
+
+  document.getElementById("adminToggle").addEventListener("click", function(){
+    if (admin === true) { setAdmin(false); editingId = confirmId = null; }
+    else if (admin === "login") admin = false;
+    else { admin = "login"; adminMsg = ""; }
+    render();
+  });
+
+  app.addEventListener("submit", function(e){
+    e.preventDefault();
+    var f = e.target;
+    if (f.id === "loginForm") {
+      if (document.getElementById("pw").value === PASSWORD) { setAdmin(true); adminMsg = ""; if (ready()) load(); }
+      else adminMsg = "비밀번호가 맞지 않아요. 다시 입력해 주세요.";
+      render(); return;
+    }
+    if (f.id === "ghForm") {
+      cfg.owner = document.getElementById("ghOwner").value.trim();
+      cfg.repo = document.getElementById("ghRepo").value.trim();
+      cfg.branch = document.getElementById("ghBranch").value.trim() || "main";
+      cfg.path = document.getElementById("ghPath").value.trim().replace(/^\//, "") || DATA_FILE;
+      cfg.token = document.getElementById("ghToken").value.trim();
+      saveCfg(); showSettings = false;
+      saveErr = false; saveMsg = ready() ? "GitHub 연결 정보를 저장했어요." : "";
+      render(); return;
+    }
+    if (f.id === "addForm") {
+      var t = document.getElementById("addTitle").value.trim(), u = normUrl(document.getElementById("addUrl").value);
+      if (!t || !u) return;
+      links.push({ id: uid(), title: t, url: u, desc: document.getElementById("addDesc").value.trim() });
+      change(); return;
+    }
+    if (f.dataset.edit) {
+      var l = links.find(function(x){ return x.id === f.dataset.edit; });
+      var et = document.getElementById("eT").value.trim(), eu = normUrl(document.getElementById("eU").value);
+      if (!l || !et || !eu) return;
+      l.title = et; l.url = eu; l.desc = document.getElementById("eD").value.trim();
+      editingId = null; change();
+    }
+  });
+
+  app.addEventListener("click", function(e){
+    if (e.target.id === "loginCancel") { admin = false; render(); return; }
+    var b = e.target.closest("[data-act]");
+    if (!b) return;
+    var act = b.dataset.act, id = b.dataset.id;
+    var i = links.findIndex(function(x){ return x.id === id; });
+    if (act === "up" && i > 0) { links.splice(i - 1, 0, links.splice(i, 1)[0]); change(); }
+    else if (act === "down" && i >= 0 && i < links.length - 1) { links.splice(i + 1, 0, links.splice(i, 1)[0]); change(); }
+    else if (act === "edit") { editingId = id; confirmId = null; render(); }
+    else if (act === "cancel") { editingId = null; render(); }
+    else if (act === "del") { confirmId = id; editingId = null; render(); }
+    else if (act === "del-no") { confirmId = null; render(); }
+    else if (act === "del-yes" && i >= 0) { links.splice(i, 1); confirmId = null; change(); }
+    else if (act === "revert") { links = clone(saved); dirty = false; saveMsg = ""; render(); }
+    else if (act === "settings") { showSettings = true; saveMsg = ""; render(); }
+    else if (act === "forget") { cfg.token = ""; saveCfg(); saveMsg = ""; render(); }
+    else if (act === "save") save();
+  });
+
+  async function save(){
+    if (saving) return;
+    if (!ready()) { saveErr = true; saveMsg = "먼저 위쪽 GitHub 연결에 계정, 저장소, 토큰을 입력해 주세요."; showSettings = true; render(); return; }
+    saving = true; saveMsg = ""; render();
+    try {
+      var ref = "?ref=" + encodeURIComponent(cfg.branch);
+      var sha;
+      var cur = await fetch(apiUrl() + ref + "&t=" + Date.now(), { headers: ghHeaders(), cache: "no-store" });
+      if (cur.ok) sha = (await cur.json()).sha;
+      else if (cur.status !== 404) throw cur;
+
+      var body = { message: "링크 목록 업데이트", content: b64(JSON.stringify(links, null, 2) + "\n"), branch: cfg.branch };
+      if (sha) body.sha = sha;
+      var res = await fetch(apiUrl(), { method: "PUT", headers: ghHeaders({ "Content-Type": "application/json" }), body: JSON.stringify(body) });
+      if (!res.ok) throw res;
+
+      saved = clone(links); dirty = false; saveErr = false;
+      saveMsg = "저장했어요. 다른 사람에게는 1~2분 뒤에 보여요.";
+    } catch (err) {
+      saveErr = true;
+      var st = err && err.status;
+      saveMsg = st === 401 ? "토큰이 맞지 않거나 만료됐어요. 연결 설정에서 토큰을 다시 넣어 주세요."
+        : st === 403 ? "토큰에 쓰기 권한이 없어요. 토큰 설정에서 Contents를 Read and write로 바꿔 주세요."
+        : st === 404 ? "저장소나 브랜치를 찾지 못했어요. 계정 이름, 저장소 이름, 브랜치를 확인해 주세요."
+        : st === 409 || st === 422 ? "그사이 파일이 바뀌었어요. 저장하기를 한 번 더 눌러 주세요."
+        : "저장하지 못했어요. 인터넷 연결을 확인하고 다시 시도해 주세요.";
+    }
+    saving = false; render();
+  }
+
+  load();
+})();
+</script>
+</body>
+</html>
